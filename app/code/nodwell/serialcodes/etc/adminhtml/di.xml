@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- create the form on the product page -->
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="modulename" xsi:type="array">
+                    <item name="class" xsi:type="string">nodwell\serialcodes\Ui\DataProvider\Product\Modifier\Serialcodes</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="nodwell\serialcodes\Ui\DataProvider\Product\Modifier\Serialcodes">
+        <arguments>
+            <argument name="formName" xsi:type="string">product_form</argument>
+            <argument name="dataScopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="dataSourceName" xsi:type="string">product_form.product_form_data_source</argument>
+        </arguments>
+    </type>
+    <virtualType name="SerialcodesGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">nodwell\serialcodes\Model\ResourceModel\Grid\Serialcodes\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SerialcodesGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+    <!-- Create our type SerialcodesGridFilterPool -->
+    <virtualType name="SerialcodesGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Type for serialcodes_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="serialcodes_record_grid_list_data_source" xsi:type="string">nodwell\serialcodes\Model\ResourceModel\Grid\Serialcodes\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Simulate our class nodwell\serialcodes\Model\ResourceModel\Grid\Serialcodes\Collection -->
+    <virtualType name="nodwell\serialcodes\Model\ResourceModel\Grid\Serialcodes\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">serialcodes</argument>
+            <argument name="resourceModel" xsi:type="string">nodwell\serialcodes\Model\ResourceModel\Serialcodes</argument>
+        </arguments>
+    </virtualType>
+ </config>

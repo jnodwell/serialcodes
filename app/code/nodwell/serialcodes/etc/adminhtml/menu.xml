@@ -1,0 +1,15 @@
+<!-- File: app/code/nodwell/serialcodes/etc/adminhtml/menu.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- ... -->
+        <add id="nodwell_serialcodes::serialcodes"
+             title="Serialcodes"
+             module="nodwell_serialcodes"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Magento_Catalog::catalog"
+             action="serialcodes/index/index"
+        />
+    </menu>
+</config>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- File: app/code/nodwell/serialcodes/etc/adminhtml/routes.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="serialcodes" frontName="serialcodes">
+            <module name="nodwell_serialcodes"/>
+        </route>
+    </router>
+</config>
