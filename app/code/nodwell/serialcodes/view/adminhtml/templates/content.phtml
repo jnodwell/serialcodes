@@ -1,2 +1,41 @@
 #File: app/code/nodwell/serialcodes/view/adminhtml/templates/content.phtml
 <p>hi</p>
+
+<form action="<?php echo $this->getUrl("serialcodes/serialcodes/post"); ?>" id="serialcodes_form" method="post"
+      enctype="multipart/form-data">
+    <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+    <input type="file" name="datafile" size="40">
+    <input type="submit" class="btn btn-success btn-send" value="Submit">
+    <div class="messages"></div>
+</form>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function(jQuery){
+        (function($) {
+            var frm = $('#serialcodes_form');
+            frm.submit(function (ev) {
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data: frm.serialize(),
+                    success: function (data)
+                    {
+                        alert('omg');
+                        var messageAlert = 'alert-success';
+                        var messageText = data.message;
+
+                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><div><p>' + messageText + '</p></div></div>';
+                        if (messageAlert && messageText) {
+                            $('#serialcodes_form').find('.messages').html(alertBox);
+                            $('#serialcodes_form')[0].reset();
+                        }
+                    }
+                });
+
+                ev.preventDefault();
+            });
+        })(jQuery);
+    });
+</script>

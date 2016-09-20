@@ -24,14 +24,6 @@
                 <item name="url" xsi:type="string">*/serialcodes/new</item>
             </item>
         </item>
-        <item name="buttons" xsi:type="array">
-            <item name="add" xsi:type="array">
-                <item name="name" xsi:type="string">import</item>
-                <item name="label" xsi:type="string" translate="true">Import From CSV</item>
-                <item name="class" xsi:type="string">secondary</item>
-                <item name="url" xsi:type="string">*/serialcodes/import</item>
-            </item>
-        </item>
     </argument>
     <dataSource name="serialcodes_record_grid_list_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
